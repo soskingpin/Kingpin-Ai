@@ -359,146 +359,6 @@
             100% { transform: translateY(0px); }
         }
 
-        .message-counter {
-            text-align: center;
-            padding: 10px 0;
-            font-size: 0.9rem;
-            color: #666;
-            background: rgba(0, 0, 0, 0.05);
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .limit-message {
-            background: linear-gradient(135deg, #ff6b6b, #ff9e9e);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 15px;
-            margin: 15px 20px;
-            text-align: center;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
-        }
-
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            padding: 20px;
-            display: none;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-
-        .modal-title {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #4b6cb7;
-            font-size: 1.5rem;
-        }
-
-        .modal-buttons {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .modal-button {
-            flex: 1;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .modal-button.wait {
-            background: linear-gradient(to right, #4b6cb7, #182848);
-            color: white;
-        }
-
-        .modal-button.pay {
-            background: linear-gradient(to right, #b21f1f, #ff416c);
-            color: white;
-        }
-
-        .modal-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .license-input {
-            margin-bottom: 20px;
-        }
-
-        .license-input label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .license-input input {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            background: rgba(0, 0, 0, 0.05);
-            color: #333;
-            font-size: 1rem;
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            border-radius: 8px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transform: translateX(100%);
-            opacity: 0;
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        .notification i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        .notification.success {
-            border-left: 4px solid #00b09b;
-        }
-
-        .notification.error {
-            border-left: 4px solid #ff416c;
-        }
-
         @media (max-width: 768px) {
             .container {
                 height: 95vh;
@@ -585,10 +445,6 @@
             </div>
         </div>
         
-        <div class="message-counter" id="messageCounter">
-            Messages left: <span id="messageCount">20</span> of 20
-        </div>
-        
         <div class="input-container">
             <input type="text" id="userInput" placeholder="Ask anything... (e.g., 'Explain quantum computing')" autocomplete="off">
             <button id="sendButton"><i class="fas fa-paper-plane"></i> Send</button>
@@ -599,75 +455,15 @@
         </div>
     </div>
 
-    <!-- Subscription Modal -->
-    <div class="modal" id="subscriptionModal">
-        <div class="modal-content">
-            <h2 class="modal-title">Message Limit Reached</h2>
-            <p style="text-align: center; margin-bottom: 25px;">You have reached the 20 free messages limit for today. Would you like to continue?</p>
-            <div class="modal-buttons">
-                <button class="modal-button wait" id="waitButton">Wait for 24 Hours</button>
-                <button class="modal-button pay" id="payButton">Pay for Continuation</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- License Key Modal -->
-    <div class="modal" id="licenseModal">
-        <div class="modal-content">
-            <h2 class="modal-title">Enter License Key</h2>
-            <div class="license-input">
-                <label for="licenseKeyInput">License Key</label>
-                <input type="text" id="licenseKeyInput" placeholder="Enter your license key (e.g., ABCD-EFGH-IJKL-MNOP)">
-            </div>
-            <div class="modal-buttons">
-                <button class="modal-button wait" id="validateButton">Validate Key</button>
-                <button class="modal-button pay" id="getLicenseButton">Get License Key</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- License Expired Modal -->
-    <div class="modal" id="licenseExpiredModal">
-        <div class="modal-content">
-            <h2 class="modal-title" style="color: #ff416c;">License Key Expired</h2>
-            <p style="text-align: center; margin-bottom: 25px;">Your license key has expired. Please renew your subscription to continue using KingPin AI.</p>
-            <div class="modal-buttons">
-                <button class="modal-button pay" id="buyAnotherButton" style="flex: 1;">Buy Another</button>
-                <button class="modal-button wait" id="putAnotherButton" style="flex: 1;">Put Another</button>
-                <button class="modal-button wait" id="freeTrialButton" style="flex: 1;">Free Trial</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="notification" id="notification">
-        <i class="fas fa-check-circle"></i>
-        <span id="notificationText"></span>
-    </div>
-
     <script>
         // DOM Elements
         const chatContainer = document.getElementById('chatContainer');
         const userInput = document.getElementById('userInput');
         const sendButton = document.getElementById('sendButton');
         const typingIndicator = document.getElementById('typingIndicator');
-        const messageCounter = document.getElementById('messageCounter');
-        const messageCountElement = document.getElementById('messageCount');
-        const subscriptionModal = document.getElementById('subscriptionModal');
-        const licenseModal = document.getElementById('licenseModal');
-        const licenseExpiredModal = document.getElementById('licenseExpiredModal');
-        const waitButton = document.getElementById('waitButton');
-        const payButton = document.getElementById('payButton');
-        const validateButton = document.getElementById('validateButton');
-        const getLicenseButton = document.getElementById('getLicenseButton');
-        const licenseKeyInput = document.getElementById('licenseKeyInput');
-        const notification = document.getElementById('notification');
-        const notificationText = document.getElementById('notificationText');
-        const buyAnotherButton = document.getElementById('buyAnotherButton');
-        const putAnotherButton = document.getElementById('putAnotherButton');
-        const freeTrialButton = document.getElementById('freeTrialButton');
 
-        // API Configuration
-        const API_KEY = "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";
+        // API Configuration - Updated with new API key
+        const API_KEY = "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";
         const API_URL = "https://openrouter.ai/api/v1/chat/completions ";
 
         // Add message to chat
@@ -746,100 +542,10 @@
             }
         }
 
-        // Check rate limit
-        function checkMessageLimit() {
-            // Check if user has a valid license key for this session
-            if (window.licenseKeyValid && !isLicenseKeyExpired()) {
-                // Reset the message count for licensed users
-                localStorage.setItem('kingpinRateLimit', JSON.stringify({
-                    lastReset: Date.now(),
-                    messageCount: 0
-                }));
-                return true;
-            }
-            
-            const now = Date.now();
-            let state = localStorage.getItem('kingpinRateLimit');
-            
-            if (!state) {
-                state = {
-                    lastReset: now,
-                    messageCount: 0
-                };
-                localStorage.setItem('kingpinRateLimit', JSON.stringify(state));
-                return true;
-            }
-            
-            state = JSON.parse(state);
-            
-            // Reset after 24 hours
-            if (now - state.lastReset > 24 * 60 * 60 * 1000) {
-                state.messageCount = 0;
-                state.lastReset = now;
-                localStorage.setItem('kingpinRateLimit', JSON.stringify(state));
-                return true;
-            }
-            
-            // Check if limit reached
-            if (state.messageCount >= 20) {
-                return false;
-            }
-            
-            // Increment count
-            state.messageCount++;
-            localStorage.setItem('kingpinRateLimit', JSON.stringify(state));
-            
-            // Update message counter
-            updateMessageCounter();
-            return true;
-        }
-
-        // Check if license key has expired
-        function isLicenseKeyExpired() {
-            if (!window.licenseKeyExpiration) {
-                return false;
-            }
-            
-            const now = new Date();
-            return now > window.licenseKeyExpiration;
-        }
-
-        // Update message counter display
-        function updateMessageCounter() {
-            const state = JSON.parse(localStorage.getItem('kingpinRateLimit'));
-            const remaining = 20 - state.messageCount;
-            messageCountElement.textContent = remaining;
-        }
-
-        // Show notification
-        function showNotification(message, type = 'success') {
-            notificationText.textContent = message;
-            notification.className = 'notification ' + type;
-            notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
         // Handle sending message
         async function sendMessage() {
             const message = userInput.value.trim();
             if (!message) return;
-            
-            // Check for license key expiration
-            if (window.licenseKeyValid && isLicenseKeyExpired()) {
-                showLicenseExpiredMessage();
-                return;
-            }
-            
-            // Check rate limit
-            const canSend = checkMessageLimit();
-            
-            if (!canSend) {
-                // Show subscription modal
-                subscriptionModal.style.display = 'flex';
-                return;
-            }
             
             // Add user message
             addMessage(message, true);
@@ -854,125 +560,6 @@
             addMessage(response);
         }
 
-        // Show license expired message
-        function showLicenseExpiredMessage() {
-            // Close any existing modals
-            licenseModal.style.display = 'none';
-            subscriptionModal.style.display = 'none';
-            
-            // Show the license expired modal
-            licenseExpiredModal.style.display = 'flex';
-        }
-
-        // Handle wait button
-        function handleWaitButton() {
-            subscriptionModal.style.display = 'none';
-            showLimitMessage();
-        }
-
-        // Show limit message
-        function showLimitMessage() {
-            // Add a message to the chat container
-            const limitMessage = document.createElement('div');
-            limitMessage.classList.add('limit-message');
-            limitMessage.textContent = 'You have reached the 20 free messages limit for today. Wait 24 hours to get more free messages.';
-            chatContainer.appendChild(limitMessage);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        // Handle pay button
-        function handlePayButton() {
-            subscriptionModal.style.display = 'none';
-            licenseModal.style.display = 'flex';
-        }
-
-        // Validate license key
-        function validateLicenseKey() {
-            const licenseKey = licenseKeyInput.value.trim();
-            if (!licenseKey) {
-                showNotification('Please enter a license key', 'error');
-                return;
-            }
-            
-            // Simple validation (should match format from license generator)
-            const keyPattern = /^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
-            if (!keyPattern.test(licenseKey)) {
-                showNotification('Invalid license key format', 'error');
-                return;
-            }
-            
-            // In a real implementation, we'd validate against the license key database
-            // For now, we'll just simulate a successful validation
-            const now = new Date();
-            const validity = 30; // 30 days for demo
-            
-            // Calculate expiration date
-            const expires = new Date(now.getTime() + (validity * 24 * 60 * 60 * 1000));
-            
-            window.licenseKeyValid = true;
-            window.licenseKeyExpiration = expires;
-            
-            // Close the modal
-            licenseModal.style.display = 'none';
-            
-            // Show success message
-            showNotification('License key validated successfully!', 'success');
-            
-            // Reset the message counter
-            localStorage.setItem('kingpinRateLimit', JSON.stringify({
-                lastReset: Date.now(),
-                messageCount: 0
-            }));
-            
-            // Update message counter
-            updateMessageCounter();
-            
-            // Show welcome message
-            setTimeout(() => {
-                addMessage("Hello! I'm KingPin AI, your advanced artificial intelligence assistant. How can I help you today?");
-            }, 1000);
-        }
-
-        // Get license key (redirect to WhatsApp)
-        function getLicenseKey() {
-            const message = encodeURIComponent(`Hi, I need a license for KingPin AI chatbot for 30 days.`);
-            window.open(`https://wa.me/263782637207?text=${message}`, '_blank');
-        }
-
-        // Handle buy another button
-        function handleBuyAnotherButton() {
-            window.open('https://wa.me/263782637207?text=Hi%2C%20I%20need%20to%20renew%20my%20KingPin%20AI%20license%20key.', '_blank');
-        }
-
-        // Handle put another button
-        function handlePutAnotherButton() {
-            licenseExpiredModal.style.display = 'none';
-            licenseModal.style.display = 'flex';
-        }
-
-        // Handle free trial button
-        function handleFreeTrialButton() {
-            licenseExpiredModal.style.display = 'none';
-            
-            // Reset the license key
-            window.licenseKeyValid = false;
-            window.licenseKeyExpiration = null;
-            
-            // Reset the message counter
-            localStorage.setItem('kingpinRateLimit', JSON.stringify({
-                lastReset: Date.now(),
-                messageCount: 0
-            }));
-            
-            // Update message counter
-            updateMessageCounter();
-            
-            // Show welcome message
-            setTimeout(() => {
-                addMessage("Hello! I'm KingPin AI, your advanced artificial intelligence assistant. How can I help you today?");
-            }, 1000);
-        }
-
         // Event listeners
         sendButton.addEventListener('click', sendMessage);
         
@@ -981,14 +568,6 @@
                 sendMessage();
             }
         });
-
-        waitButton.addEventListener('click', handleWaitButton);
-        payButton.addEventListener('click', handlePayButton);
-        validateButton.addEventListener('click', validateLicenseKey);
-        getLicenseButton.addEventListener('click', getLicenseKey);
-        buyAnotherButton.addEventListener('click', handleBuyAnotherButton);
-        putAnotherButton.addEventListener('click', handlePutAnotherButton);
-        freeTrialButton.addEventListener('click', handleFreeTrialButton);
 
         // Initial focus on input
         userInput.focus();
@@ -1002,9 +581,6 @@
             
             addMessage("Hello! I'm KingPin AI, your advanced artificial intelligence assistant. How can I help you today?");
         }, 3000);
-        
-        // Initialize message counter
-        updateMessageCounter();
     </script>
 </body>
 </html>
